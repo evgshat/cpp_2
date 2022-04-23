@@ -31,6 +31,11 @@ Fixed &Fixed::operator= (const Fixed &copy)
 	return (*this);
 }
 
+float Fixed::toFloat(void) const
+{
+	this->chislo = chislo
+}
+
 Fixed &Fixed::operator<< (const float &copy)
 {
 
