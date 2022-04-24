@@ -26,61 +26,72 @@ Fixed &Fixed::operator= (const Fixed &copy)
 	return (*this);
 }
 
-bool Fixed::operator> (const Fixed &copy)
+bool Fixed::operator> (const Fixed &copy) const
 {
-
+	return (this->chislo > copy.chislo);
 }
 
-bool Fixed::operator< (const Fixed &copy)
+bool Fixed::operator< (const Fixed &copy) const
 {
-
+	return (this->chislo < copy.chislo);
 }
 
-bool Fixed::operator>= (const Fixed &copy)
+bool Fixed::operator>= (const Fixed &copy) const
 {
-
+	return (this->chislo >= copy.chislo);
 }
 
-bool Fixed::operator<= (const Fixed &copy)
+bool Fixed::operator<= (const Fixed &copy) const
 {
-
+	return (this->chislo <= copy.chislo);
 }
 
-bool Fixed::operator== (const Fixed &copy)
+bool Fixed::operator== (const Fixed &copy) const
 {
-
+	return (this->chislo == copy.chislo);
 }
 
-bool Fixed::operator!= (const Fixed &copy)
+bool Fixed::operator!= (const Fixed &copy) const
 {
-
+	return (this->chislo != copy.chislo);
 }
 
-Fixed &Fixed::operator+ (const Fixed &copy)
+Fixed Fixed::operator+ (const Fixed &copy)
 {
-	Fixed res;
-	res = this->toFloat() + copy.toFloat();
+	return (Fixed(this->toFloat() + copy.toFloat()));
+}
+
+Fixed Fixed::operator- (const Fixed &copy)
+{
+	return (Fixed(this->toFloat() - copy.toFloat()));
+}
+
+Fixed Fixed::operator* (const Fixed &copy)
+{
+	return (Fixed(this->toFloat() * copy.toFloat()));
+}
+
+Fixed Fixed::operator/ (const Fixed &copy)
+{
+	if (copy.toFloat() == 0)
+		throw (std::runtime_error("Cannot divide by zero"));
+	return (Fixed(this->toFloat() / copy.toFloat()));
+}
+
+Fixed Fixed::operator++(int)
+{
+	Fixed res(*this);
+	this->chislo++;
 	return (res);
 }
 
-Fixed &Fixed::operator- (const Fixed &copy)
+Fixed Fixed::operator++ ()
 {
-	Fixed res;
-	res = this->toFloat() - copy.toFloat();
-	return (res);
+	this->chislo++;
+	return (*this);
 }
 
-Fixed &Fixed::operator* (const Fixed &copy)
-{
-
-}
-
-Fixed &Fixed::operator/ (const Fixed &copy)
-{
-
-}
-
-const int &Fixed::min(int &a, int &b) const
+const Fixed &Fixed::min(Fixed &a, Fixed &b)
 {
 	if (a < b)
 		return (a);
@@ -88,7 +99,7 @@ const int &Fixed::min(int &a, int &b) const
 		return (b);
 }
 
-const int &Fixed::min(const int &a, const int &b) const
+const Fixed &Fixed::min(const Fixed &a, const Fixed &b)
 {
 	if (a < b)
 		return (a);
@@ -96,7 +107,7 @@ const int &Fixed::min(const int &a, const int &b) const
 		return (b);
 }
 
-const int &Fixed::max(int &a, int &b) const
+const Fixed &Fixed::max(Fixed &a, Fixed &b)
 {
 	if (a > b)
 		return (a);
@@ -104,7 +115,7 @@ const int &Fixed::max(int &a, int &b) const
 		return (b);
 }
 
-const int &Fixed::max(const int &a, const int &b) const
+const Fixed &Fixed::max(const Fixed &a, const Fixed &b)
 {
 	if (a > b)
 		return (a);
