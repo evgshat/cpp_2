@@ -2,33 +2,114 @@
 
 Fixed::Fixed()
 {
-	std::cout << "Default constructor called" << std::endl;
 	this->chislo = 0;
 }
 
 Fixed::Fixed(const int copy)
 {
-	std::cout << "Int constructor called" << std::endl;
 	this->chislo = copy << this->bits;
 }
 
 Fixed::Fixed(const float copy)
 {
-	std::cout << "Float constructor called" << std::endl;
 	this->chislo = roundf((1 << this->bits) * copy);
 }
 
 Fixed::Fixed(const Fixed& copy)
 {
-	std::cout << "Copy constructor called" << std::endl;
 	*this = copy;
 }
 
 Fixed &Fixed::operator= (const Fixed &copy)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
 	this->chislo = copy.getRawBits();
 	return (*this);
+}
+
+bool Fixed::operator> (const Fixed &copy)
+{
+
+}
+
+bool Fixed::operator< (const Fixed &copy)
+{
+
+}
+
+bool Fixed::operator>= (const Fixed &copy)
+{
+
+}
+
+bool Fixed::operator<= (const Fixed &copy)
+{
+
+}
+
+bool Fixed::operator== (const Fixed &copy)
+{
+
+}
+
+bool Fixed::operator!= (const Fixed &copy)
+{
+
+}
+
+Fixed &Fixed::operator+ (const Fixed &copy)
+{
+	Fixed res;
+	res = this->toFloat() + copy.toFloat();
+	return (res);
+}
+
+Fixed &Fixed::operator- (const Fixed &copy)
+{
+	Fixed res;
+	res = this->toFloat() - copy.toFloat();
+	return (res);
+}
+
+Fixed &Fixed::operator* (const Fixed &copy)
+{
+
+}
+
+Fixed &Fixed::operator/ (const Fixed &copy)
+{
+
+}
+
+const int &Fixed::min(int &a, int &b) const
+{
+	if (a < b)
+		return (a);
+	else
+		return (b);
+}
+
+const int &Fixed::min(const int &a, const int &b) const
+{
+	if (a < b)
+		return (a);
+	else
+		return (b);
+}
+
+const int &Fixed::max(int &a, int &b) const
+{
+	if (a > b)
+		return (a);
+	else
+		return (b);
+}
+
+const int &Fixed::max(const int &a, const int &b) const
+{
+	if (a > b)
+		return (a);
+	else
+		return (b);
 }
 
 std::ostream& operator<<(std::ostream& os, const Fixed &copy)
@@ -49,7 +130,6 @@ int Fixed::toInt( void ) const
 
 int Fixed::getRawBits( void ) const
 {
-	std::cout << "getRawBits member function called" << std::endl;
 	return (this->chislo);
 }
 
@@ -60,5 +140,5 @@ void Fixed::setRawBits( int const raw )
 
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called" << std::endl;
+
 }

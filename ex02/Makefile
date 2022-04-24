@@ -1,4 +1,4 @@
-NAME	=	useful_fixed
+NAME	=	talking
 CC		=	clang++
 FLAGS	=	-Wall -Wextra -Werror -std=c++98
 SRCS	=	main.cpp Fixed.cpp
